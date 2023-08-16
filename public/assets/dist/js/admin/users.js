@@ -23,6 +23,12 @@ $(document).ready(function() {
             {
                 "data": "created_at",
             },
+            {
+                "searchable": false,
+                "sortable": false,
+                "data": "actions"
+            },
+
 
         ],
 

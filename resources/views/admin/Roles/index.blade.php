@@ -3,7 +3,8 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                <a href="{{route('admin.roles.create')}}" class="btn btn-primary">Create</a>
+
             </div>
             <!-- /.card-header -->
             <div class="card-body">

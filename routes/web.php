@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->prefix('admin')->as('admin.')->group(function () {
-       Route::get('/',[\App\Http\Controllers\Admin\AdminController::class,'index'])->name('dashboard');
+       Route::get('/',[AdminController::class,'index'])->name('dashboard');
 
        //users
        Route::resource('users',UsersController::class);
@@ -25,8 +27,8 @@ Route::middleware('auth')->prefix('admin')->as('admin.')->group(function () {
 
 
       //users
-      Route::resource('roles',\App\Http\Controllers\Admin\RolesController::class);
-      Route::get('roles/data/get',[\App\Http\Controllers\Admin\RolesController::class,'data'])->name('roles.data');
+      Route::resource('roles',RolesController::class);
+      Route::get('roles/data/get',[RolesController::class,'data'])->name('roles.data');
 
 
 

@@ -34,10 +34,13 @@ class RolesController extends Controller
         $model = $this->repository->get();
         return DataTables::eloquent($model)
             ->addIndexColumn()
-
+            ->addColumn('actions', function($row){
+                return view('admin._includes._actions',['model'=>$row,'id'=>$row->id]);
+            })
             ->addColumn('created_at', function ($row) {
                 return $row->created_at?->format('Y-m-d');
             })
+            ->rawColumns(['actions'])
             ->toJson();
     }
     public function create()

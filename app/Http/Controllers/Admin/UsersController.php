@@ -30,10 +30,16 @@ class UsersController extends Controller
         $model = $this->repository->getUsers();
         return DataTables::eloquent($model)
             ->addIndexColumn()
+            ->addColumn('actions', function($row){
+                return view('admin._includes._actions',['model'=>$row,'id'=>$row->id]);
+            })
+
 
             ->addColumn('created_at', function ($row) {
                 return $row->created_at?->format('Y-m-d');
             })
+
+            ->rawColumns(['actions'])
             ->toJson();
     }
     public function create()
@@ -61,7 +67,7 @@ class UsersController extends Controller
         $one=$this->repository->find($id);
         $users = $this->repository->all();
         $roles=Role::all();
-        return view('admin.users.edit',compact('one','users','roles'));
+        return view('admin.users.update',compact('one','users','roles'));
     }
 
     public function update($id,UserRequest $request)
